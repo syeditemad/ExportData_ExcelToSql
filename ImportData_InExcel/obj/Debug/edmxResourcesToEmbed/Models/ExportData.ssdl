@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Sql_PractiseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Sql_Practise.dbo.ExcelData_Import' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ExcelData_Import">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="Last_name" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="gender" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ip_address" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="Sql_PractiseModelStoreContainer">
+    <EntitySet Name="ExcelData_Import" EntityType="Self.ExcelData_Import" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ExcelData_Import].[Id] AS [Id], 
+    [ExcelData_Import].[first_name] AS [first_name], 
+    [ExcelData_Import].[Last_name] AS [Last_name], 
+    [ExcelData_Import].[email] AS [email], 
+    [ExcelData_Import].[gender] AS [gender], 
+    [ExcelData_Import].[ip_address] AS [ip_address]
+    FROM [dbo].[ExcelData_Import] AS [ExcelData_Import]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
