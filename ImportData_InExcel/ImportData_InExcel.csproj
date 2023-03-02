@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus, Version=6.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.6.1.2\lib\net462\EPPlus.dll</HintPath>
@@ -161,23 +161,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ExcelData_Import.cs">
-      <DependentUpon>ImportExcel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ImportExcel.Context.cs">
+    <Compile Include="Models\vendor_Inventory.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImportExcel.Context.tt</DependentUpon>
+      <DependentUpon>vendor_Inventory.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ImportExcel.cs">
+    <Compile Include="Models\vendor_Inventory.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImportExcel.tt</DependentUpon>
+      <DependentUpon>vendor_Inventory.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ImportExcel.Designer.cs">
+    <Compile Include="Models\vendor_Inventory.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImportExcel.edmx</DependentUpon>
+      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vendor_inventory_Upload.cs">
+      <DependentUpon>vendor_Inventory.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -190,24 +190,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ImportExcel.Context.tt">
+    <Content Include="Models\vendor_Inventory.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ImportExcel.edmx</DependentUpon>
-      <LastGenOutput>ImportExcel.Context.cs</LastGenOutput>
+      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
+      <LastGenOutput>vendor_Inventory.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ImportExcel.tt">
+    <Content Include="Models\vendor_Inventory.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ImportExcel.edmx</DependentUpon>
-      <LastGenOutput>ImportExcel.cs</LastGenOutput>
+      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
+      <LastGenOutput>vendor_Inventory.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ImportExcel.edmx">
+    <EntityDeploy Include="Models\vendor_Inventory.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ImportExcel.Designer.cs</LastGenOutput>
+      <LastGenOutput>vendor_Inventory.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ImportExcel.edmx.diagram">
-      <DependentUpon>ImportExcel.edmx</DependentUpon>
+    <Content Include="Models\vendor_Inventory.edmx.diagram">
+      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -232,13 +232,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ExportData.cshtml" />
+    <Content Include="Views\Home\ReportList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BAL\" />
+    <Folder Include="Content\Upload\" />
     <Folder Include="Views\ImportExcelData\" />
   </ItemGroup>
   <ItemGroup>

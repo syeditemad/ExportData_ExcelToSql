@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Sql_PractiseModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Sql_PractiseEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Vendor_inventory_Upload" EntityType="Sql_PractiseModel1.Vendor_inventory_Upload" />
+  </EntityContainer>
+  <EntityType Name="Vendor_inventory_Upload">
+    <Key>
+      <PropertyRef Name="InventoryId" />
+    </Key>
+    <Property Name="InventoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vendor_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Item_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Item_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit_Of_Measurement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Item_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Closing_Stock" Type="Int32" />
+    <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

@@ -6,9 +6,30 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .navbar-blue-bg {
+            background: #01447c;
+        }
+
+        .navbar-blue-bg a {
+            color: #fff;
+        }
+
+        .navbar-brand {
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        .header-right-text {
+            float: right;
+            color: #fff;
+            margin: 15px 0 0;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-blue-bg">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,15 +37,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("BAJAJ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Upload", "ExportData", "Home")</li>
+                    <li>@Html.ActionLink("Report", "ReportList", "Home")</li>
                 </ul>
+                <div class="header-right-text">
+                    <span>Logged In As OMNIA APPLIANCES PRIVATE LIMITED</span>
+                </div>
             </div>
+            
         </div>
     </div>
     <div class="container body-content">

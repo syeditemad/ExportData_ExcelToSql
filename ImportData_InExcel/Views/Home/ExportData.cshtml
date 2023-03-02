@@ -1,31 +1,119 @@
-﻿@model ImportData_InExcel.Models.ExcelData_Import
+﻿@model ImportData_InExcel.Models.Vendor_inventory_Upload
 
 @{
     ViewBag.Title = "ExportData";
 }
 
-<h2>ExportData</h2>
+@*@if(ViewBag.)*@
+
+<style>
+    .text-editor {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+        margin-right: 5px;
+    }
+
+    .blue-bg {
+        background: #507cd0;
+        color: white;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: white;
+        color: black;
+    }
+    .text-success{
+        color:darkgreen;
+        font-style:italic;
+    }
+</style>
+<script>
+    $(function () {
+        alert()
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        $('#invtDate').attr('max', maxDate);
+    });
+</script>
+<div class="text-success">
+    <h3>
+        @ViewBag.Message
+    </h3>
+   
+</div>
+<div class="alert-danger">
+    <h3>
+        @ViewBag.Error
+    </h3>
+   
+</div>
+<h4 class="blue-bg">Vendor Inventory Details</h4>
 
 @using (Html.BeginForm("ExportData", "Home", FormMethod.Post, new
 {
     enctype = "multipart/form-data"
 }))
 {
-    <tabe>
+    
+    <div class="form-group form-inline">
+        <lable>
+            <strong>
+                File:
+            </strong>
+        </lable>
+        <div class="text-editor">
+            <input type="file" name="UploadedFile" required />
+        </div>
+
+        <div class="text-picker" style="margin-top:10px;">
+            <lable>
+                <strong>
+                    Inventory Date:
+                </strong>
+            </lable>
+            <input type="date" name="invtDate" id="invtDate" min="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+        </div>
+        <div>
+            @Html.ActionLink("Download Template", "UploadFile")
+        </div>
+
+
+    </div>
+    <div class="Subbtn blue-bg">
+        <input type="submit" name="upload" class="btn btn-primary" value="Upload" />
+        @*@Html.ActionLink("Download", "UploadFile")*@
+    </div>
+    <!--<tabe>
         <tr>
-            
+
             <td>
                 File:
             </td>
-            <td>
+            <td class="form-control" style="height:10px;">
                 <input type="file" name="UploadedFile" />
             </td>
-        </tr>
-        <tr>
-            <td colspan = "2">
-              <input type = "submit" name = "Submit" value = "Submit" /> 
+            <td colspan="2">
+                <input type="submit" name="Submit" value="Submit" />
             </td>
+            <td>
+                @Html.ActionLink("Download", "UploadFile")-->
+    @*<a asp-controller="Home" asp-action="UploadFile" new { fileName=UploadedFile } class="btn btn-info">All Users</a>*@
+    @*<td>@Html.ActionLink("Download", "DownloadFile", new { fileName = file.FileName })</td>*@
+
+    <!--</td>
         </tr>
-    </tabe>
+    </tabe>-->
 }
 
