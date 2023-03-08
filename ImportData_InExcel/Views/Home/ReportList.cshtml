@@ -8,6 +8,7 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    
 </p>
 <div style="margin-left:750px;">
     <lable><strong> Inventory Date:</strong></lable>
@@ -16,11 +17,14 @@
 </div>
 @if (ViewBag.Message == null)
 {
-    
+<div class="Grid">
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.vendor_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendor_Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Item_Code)
@@ -45,9 +49,13 @@
 
         @foreach (var item in Model)
         {
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.vendor_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vendor_Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Item_Code)
@@ -75,15 +83,17 @@
             </tr>
         }
     </table>
+</div>
+   
 }
-    else
-    {
-        <div>
-            <h4 class="text-center">
-                @ViewBag.Message
-            </h4>
-        </div>
-    }
+else
+{
+    <div>
+        <h4 class="text-center">
+            @ViewBag.Message
+        </h4>
+    </div>
+}
 
 <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">

@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Sql_PractiseModel1StoreContainer" CdmEntityContainer="Sql_PractiseEntities1">
+  <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities">
     <EntitySetMapping Name="Vendor_inventory_Upload">
-      <EntityTypeMapping TypeName="Sql_PractiseModel1.Vendor_inventory_Upload">
+      <EntityTypeMapping TypeName="TestModel.Vendor_inventory_Upload">
         <MappingFragment StoreEntitySet="Vendor_inventory_Upload">
-          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-          <ScalarProperty Name="Closing_Stock" ColumnName="Closing_Stock" />
-          <ScalarProperty Name="Item_Type" ColumnName="Item_Type" />
-          <ScalarProperty Name="Unit_Of_Measurement" ColumnName="Unit_Of_Measurement" />
-          <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
-          <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
-          <ScalarProperty Name="vendor_id" ColumnName="vendor_id" />
           <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+          <ScalarProperty Name="vendor_id" ColumnName="vendor_id" />
+          <ScalarProperty Name="vendor_Name" ColumnName="vendor_Name" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
+          <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+          <ScalarProperty Name="Unit_Of_Measurement" ColumnName="Unit_Of_Measurement" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item_Type" />
+          <ScalarProperty Name="Closing_Stock" ColumnName="Closing_Stock" />
+          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

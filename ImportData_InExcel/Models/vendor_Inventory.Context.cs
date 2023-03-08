@@ -13,10 +13,10 @@ namespace ImportData_InExcel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Sql_PractiseEntities1 : DbContext
+    public partial class TestEntities : DbContext
     {
-        public Sql_PractiseEntities1()
-            : base("name=Sql_PractiseEntities1")
+        public TestEntities()
+            : base("name=TestEntities")
         {
         }
     

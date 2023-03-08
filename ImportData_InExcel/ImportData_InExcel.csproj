@@ -161,23 +161,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\vendor_Inventory.Context.cs">
+    <Compile Include="Models\Vendor_Inventory.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>vendor_Inventory.Context.tt</DependentUpon>
+      <DependentUpon>Vendor_Inventory.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vendor_Inventory.cs">
+    <Compile Include="Models\Vendor_Inventory.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>vendor_Inventory.tt</DependentUpon>
+      <DependentUpon>Vendor_Inventory.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vendor_Inventory.Designer.cs">
+    <Compile Include="Models\Vendor_Inventory.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
+      <DependentUpon>Vendor_Inventory.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Vendor_inventory_Upload.cs">
-      <DependentUpon>vendor_Inventory.tt</DependentUpon>
+      <DependentUpon>Vendor_Inventory.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -190,24 +190,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\vendor_Inventory.Context.tt">
+    <Content Include="Models\Vendor_Inventory.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
-      <LastGenOutput>vendor_Inventory.Context.cs</LastGenOutput>
+      <DependentUpon>Vendor_Inventory.edmx</DependentUpon>
+      <LastGenOutput>Vendor_Inventory.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\vendor_Inventory.tt">
+    <Content Include="Models\Vendor_Inventory.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
-      <LastGenOutput>vendor_Inventory.cs</LastGenOutput>
+      <DependentUpon>Vendor_Inventory.edmx</DependentUpon>
+      <LastGenOutput>Vendor_Inventory.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\vendor_Inventory.edmx">
+    <EntityDeploy Include="Models\Vendor_Inventory.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>vendor_Inventory.Designer.cs</LastGenOutput>
+      <LastGenOutput>Vendor_Inventory.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\vendor_Inventory.edmx.diagram">
-      <DependentUpon>vendor_Inventory.edmx</DependentUpon>
+    <Content Include="Models\Vendor_Inventory.edmx.diagram">
+      <DependentUpon>Vendor_Inventory.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -235,6 +235,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ExportData.cshtml" />
     <Content Include="Views\Home\ReportList.cshtml" />
+    <Content Include="Views\Home\groupByFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

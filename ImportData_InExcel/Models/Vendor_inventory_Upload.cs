@@ -11,16 +11,19 @@ namespace ImportData_InExcel.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Vendor_inventory_Upload
     {
         public int InventoryId { get; set; }
         public string vendor_id { get; set; }
+        public string vendor_Name { get; set; }
         public string Item_Code { get; set; }
         public string Item_Name { get; set; }
         public string Unit_Of_Measurement { get; set; }
         public string Item_Type { get; set; }
         public Nullable<int> Closing_Stock { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime UploadDate { get; set; }
     }
 }

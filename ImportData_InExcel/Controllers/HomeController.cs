@@ -13,6 +13,10 @@ using ImportData_InExcel.Models;
 using OfficeOpenXml;
 using System.Configuration;
 using System.Net.Mime;
+using System.Text;
+using OfficeOpenXml.FormulaParsing.Excel;
+using System.Web.UI.WebControls;
+using System.Web.UI;
 
 namespace ImportData_InExcel.Controllers
 {
@@ -54,6 +58,8 @@ namespace ImportData_InExcel.Controllers
                 //Add Columns to the Data Table as per the columns defined in the Table Type Parameter
                 DataColumn Id = new DataColumn("vendor_id");
                 InventoryDataTable.Columns.Add(Id);
+                DataColumn vendor_Name = new DataColumn("vendor_Name");
+                InventoryDataTable.Columns.Add(vendor_Name);
                 DataColumn Name = new DataColumn("Item_Code");
                 InventoryDataTable.Columns.Add(Name);
                 DataColumn Email = new DataColumn("Item_Name");
@@ -86,25 +92,26 @@ namespace ImportData_InExcel.Controllers
                                 rowNumber = rowIterator;
                                 var excelData_Import = new Vendor_inventory_Upload();
                                 excelData_Import.vendor_id = (workSheet.Cells[rowIterator, 1].Value != null) ? workSheet.Cells[rowIterator, 1].Value.ToString() : string.Empty;
-                                excelData_Import.Item_Code = (workSheet.Cells[rowIterator, 2].Value!=null)? workSheet.Cells[rowIterator, 2].Value.ToString():string.Empty;
-                                excelData_Import.Item_Name = (workSheet.Cells[rowIterator, 3].Value!=null)? workSheet.Cells[rowIterator,3].Value.ToString():string.Empty;
-                                excelData_Import.Unit_Of_Measurement = (workSheet.Cells[rowIterator, 4].Value!=null) ? workSheet.Cells[rowIterator, 4].Value.ToString() : string.Empty;
-                                excelData_Import.Item_Type = (workSheet.Cells[rowIterator, 5].Value!=null) ? workSheet.Cells[rowIterator, 5].Value.ToString(): string.Empty;
+                                excelData_Import.vendor_Name = (workSheet.Cells[rowIterator, 2].Value != null) ? workSheet.Cells[rowIterator, 2].Value.ToString() : string.Empty;
+                                excelData_Import.Item_Code = (workSheet.Cells[rowIterator, 3].Value!=null)? workSheet.Cells[rowIterator, 3].Value.ToString():string.Empty;
+                                excelData_Import.Item_Name = (workSheet.Cells[rowIterator, 4].Value!=null)? workSheet.Cells[rowIterator,4].Value.ToString():string.Empty;
+                                excelData_Import.Unit_Of_Measurement = (workSheet.Cells[rowIterator, 5].Value!=null) ? workSheet.Cells[rowIterator, 5].Value.ToString() : string.Empty;
+                                excelData_Import.Item_Type = (workSheet.Cells[rowIterator, 6].Value!=null) ? workSheet.Cells[rowIterator, 6].Value.ToString(): string.Empty;
                                // excelData_Import.Closing_Stock =Convert.ToInt32(Convert.ToDouble(workSheet.Cells[rowIterator, 6].Value!=null ? workSheet.Cells[rowIterator,6].Value)* 100);
-                                excelData_Import.Closing_Stock = Convert.ToInt32(Convert.ToDouble(workSheet.Cells[rowIterator, 6].Value) * 100);
+                                excelData_Import.Closing_Stock = Convert.ToInt32(Convert.ToDouble(workSheet.Cells[rowIterator, 7].Value) * 100);
                                 //string Date= ((workSheet.Cells[rowIterator, 7]).Value.ToString());
                                 //excelData_Import.C_date = DateTime.ParseExact(Date, "M/d/yyyy h:mm", CultureInfo.InvariantCulture);
                                 // DateTime Date = ((workSheet.Cells[rowIterator, 7]).Value);
                                 //long numDate = long.Parse(workSheet.Cells[rowIterator, 7].Value.ToString());
                                 // excelData_Import.UploadDate = DateTime.FromOADate(numDate);
                                 excelData_Import.UploadDate = inventoryDate;
-                                InventoryDataTable.Rows.Add(excelData_Import.vendor_id, excelData_Import.Item_Code, excelData_Import.Item_Name, excelData_Import.Unit_Of_Measurement, excelData_Import.Item_Type, excelData_Import.Closing_Stock, inventoryDate);
+                                InventoryDataTable.Rows.Add(excelData_Import.vendor_id, excelData_Import.vendor_Name, excelData_Import.Item_Code, excelData_Import.Item_Name, excelData_Import.Unit_Of_Measurement, excelData_Import.Item_Type, excelData_Import.Closing_Stock, inventoryDate);
                                 //Export_Data.Add(excelData_Import);
                             }
                         }
                     }
                 }
-                string connectionString = ConfigurationManager.ConnectionStrings["BulkCopy"].ToString();
+                string connectionString = ConfigurationManager.ConnectionStrings["TestEntities"].ToString();
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(connection))
@@ -112,6 +119,7 @@ namespace ImportData_InExcel.Controllers
                         sqlBulkCopy.DestinationTableName = "dbo.Vendor_inventory_Upload";
                         // sqlBulkCopy.ColumnMappings.Add("InventoryId", "InventoryId");
                         sqlBulkCopy.ColumnMappings.Add("vendor_id", "vendor_id");
+                        sqlBulkCopy.ColumnMappings.Add("vendor_Name", "vendor_Name");
                         sqlBulkCopy.ColumnMappings.Add("Item_Code", "Item_Code");
                         sqlBulkCopy.ColumnMappings.Add("Item_Name", "Item_Name");
                         sqlBulkCopy.ColumnMappings.Add("UOM", "Unit_Of_Measurement");
@@ -162,7 +170,7 @@ namespace ImportData_InExcel.Controllers
                 DataTable dataTable = new DataTable();
                 OleDbDataAdapter adapter = new OleDbDataAdapter("Select * from [" + tableName + "]", excelConnection);
                 adapter.Fill(dataTable);
-                string connectionString = ConfigurationManager.ConnectionStrings["BulkCopy"].ToString();
+                string connectionString = ConfigurationManager.ConnectionStrings["TestEntities"].ToString();
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(connection))
@@ -203,10 +211,9 @@ namespace ImportData_InExcel.Controllers
         [HttpGet]
         public ActionResult ReportList(string Filter_value)
         {
-            Sql_PractiseEntities1 db = new Sql_PractiseEntities1();
+            TestEntities db = new TestEntities();
             if (string.IsNullOrEmpty(Filter_value))
             {
-                
                 List<Vendor_inventory_Upload> vendorList = db.Vendor_inventory_Upload.ToList();
                 return View(vendorList);
             }
@@ -226,6 +233,99 @@ namespace ImportData_InExcel.Controllers
                 }
             }
         }
+
+        //[HttpGet]
+        //public ActionResult ExportToExcel()
+        //{
+        //    TestEntities db = new TestEntities();
+        //    var gv = new GridView();
+        //    gv.DataSource = db.Vendor_inventory_Upload.ToList();
+        //    gv.DataBind();
+
+        //    Response.ClearContent();
+        //    Response.Buffer = true;
+        //    Response.AddHeader("content-disposition", "attachment; filename=VendorReport.xls");
+        //    Response.ContentType = "application/ms-excel";
+
+        //    Response.Charset = "";
+        //    StringWriter objStringWriter = new StringWriter();
+        //    HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+
+        //    gv.RenderControl(objHtmlTextWriter);
+
+        //    Response.Output.Write(objStringWriter.ToString());
+        //    Response.Flush();
+        //    Response.End();
+
+        //    return View("Index");
+        //}
+
+        public void  ExportToExcel()
+        {
+            TestEntities db = new TestEntities();
+            string constr = ConfigurationManager.AppSettings["TestEntities"];
+            var Client = new SqlConnection(constr);
+            var excelventorList = db.Vendor_inventory_Upload.ToList();
+           
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage Ep = new ExcelPackage();
+            ExcelWorksheet sheet = Ep.Workbook.Worksheets.Add("Report");
+            sheet.Cells["A1"].Value = "InventoryId";
+            sheet.Cells["B1"].Value = "vendor_id";
+            sheet.Cells["C1"].Value = "vendor_Name";
+            sheet.Cells["D1"].Value = "Item_Code";
+            sheet.Cells["E1"].Value = "Item_Name";
+            sheet.Cells["F1"].Value = "Unit_Of_Measurement";
+            sheet.Cells["G1"].Value = "Item_Type";
+            sheet.Cells["H1"].Value = "Closing_Stock";
+            sheet.Cells["I1"].Value = "UploadDate";
+            int row = 2;
+            foreach (var item in excelventorList)
+            {
+
+                sheet.Cells[string.Format("A{0}", row)].Value = item.InventoryId;
+                sheet.Cells[string.Format("B{0}", row)].Value = item.vendor_id;
+                sheet.Cells[string.Format("C{0}", row)].Value = item.vendor_Name;
+                sheet.Cells[string.Format("D{0}", row)].Value = item.Item_Code;
+                sheet.Cells[string.Format("E{0}", row)].Value = item.Item_Name;
+                sheet.Cells[string.Format("F{0}", row)].Value = item.Unit_Of_Measurement;
+                sheet.Cells[string.Format("G{0}", row)].Value = item.Item_Type;
+                sheet.Cells[string.Format("H{0}", row)].Value = item.Closing_Stock;
+                sheet.Cells[string.Format("I{0}", row)].Value =(Convert.ToDateTime(item.UploadDate).ToString("d"));
+                row++;
+            }
+            sheet.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "Report.xlsx");
+            Response.BinaryWrite(Ep.GetAsByteArray());
+            Response.End();
+        }  
+
+
+        //public ActionResult groupByFilter()
+        //{
+        //    try
+        //    {
+        //        TestEntities db = new TestEntities();
+        //        var list = db.Vendor_inventory_Upload.ToList().GroupBy(d => d.Item_Code).ToList();
+                
+        //        //var result = (from emp in list
+        //        //             group emp by emp.Item_Code into grp
+        //        //             select new {
+        //        //                 grp.Key,
+        //        //                 id = grp.Sum(x => Int32.Parse((x.Unit_Of_Measurement)))
+        //        //             }).ToList();
+        //        return PartialView(list);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw;
+        //    }
+          
+             
+        //}
+       
     }
 
 }
